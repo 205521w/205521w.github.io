@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			overflow:hidden;
+		}
+		.box{
+			width:1040px;
+			height:1040px;
+			perspective:519px;
+			position:relative;
+			margin:0px auto;
+		}
+		.box1{
+			/*transition:all 10s ease 0s;*/
+			transform-style:preserve-3d;
+		}
+		.box div{
+			width:1040px;
+			height:1040px;
+			background-size:4160px 3120px;
+			position:absolute;
+			left:0px;
+			top:0px;
+		}
+		.vr1{
+			background:url(images/timg.jpg) -1040px 0px no-repeat;
+			transform:rotateX(-90deg) translateZ(-519px);
+		}
+		.vr2{
+			background:url(images/timg.jpg) 0px -1040px no-repeat;
+			transform:rotateY(90deg) translateZ(-519px);
+		}
+		.vr3{
+			background:url(images/timg.jpg) -1040px -1040px no-repeat;
+			transform:translateZ(-519px);
+		}
+		.vr4{
+			background:url(images/timg.jpg) -2080px -1040px no-repeat;
+			transform:rotateY(-90deg) translateZ(-519px);
+		}
+		.vr5{
+			background:url(images/timg.jpg) -3120px -1040px no-repeat;
+			transform:rotateY(180deg) translateZ(-519px);
+		}
+		.vr6{
+			background:url(images/timg.jpg) -1040px -2080px no-repeat;
+			transform:rotateX(90deg) translateZ(-519px);
+		}
+		.box .box1 #swk{
+			width:200px;
+			height:180px;
+			background:url(images/s.png) no-repeat;
+			background-size:1600px 180px;
+			margin:500px 0px 0px 200px;
+			transform:translateZ(500px);
+		}
+		.box .box1 #zbj{
+			width:200px;
+			height:180px;
+			background:url(images/z.png) no-repeat;
+			background-size:1600px 180px;
+			margin:500px 0px 0px 400px;
+			transform:translateZ(500px);
+		}
+		.box .box1 #ts{
+			width:170px;
+			height:240px;
+			background:url(images/t.png) no-repeat;
+			background-size:1360px 240px;
+			margin:500px 0px 0px 600px;
+			transform:translateZ(500px);
+		}
+		.box .box1 #ss{
+			width:210px;
+			height:200px;
+			background:url(images/x.png) no-repeat;
+			background-size:1680px 200px;
+			margin:500px 0px 0px 800px;
+			transform:translateZ(500px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="box1">
+			<div class="vr1"></div>
+			<div class="vr2"></div>
+			<div class="vr3"></div>
+			<div class="vr4"></div>
+			<div class="vr5"></div>
+			<div class="vr6"></div>
+			<div id="swk"></div>
+			<div id="zbj"></div>
+			<div id="ts"></div>
+			<div id="ss"></div>
+		</div>
+	</div>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		var nums = 0;
+		var numt = 0;
+		var numd = 0;
+		setInterval(function(){
+			nums-=200;
+			numd-=210;
+			numt-=170;
+			if(nums <= -1600){
+				nums = 0;
+			}
+			if(numt <= -1190){
+				numt = 0;
+			}
+			if(numd <= -1470){
+				numd = 0;
+			}
+			$("ss").style.backgroundPosition = numd+"px";
+			$("ts").style.backgroundPosition = numt+"px";
+			$("swk").style.backgroundPosition = nums+"px";
+			$("zbj").style.backgroundPosition = nums+"px";
+		},200);
+		var box = document.getElementsByClassName('box1')[0];
+		var body = document.body;
+		var numx = 0;
+		body.onmousedown = function(e){
+			e.preventDefault();
+			var x = e.clientX;
+			body.onmousemove = function(evt){
+				evt.preventDefault();
+				var ex = evt.clientX;
+				numx += (ex-x)/150;
+				box.style.transform = "rotateY(-"+numx+"deg)";
+			}
+		}
+		body.onmouseup = function(){
+			body.onmousemove = null;
+		}
+	</script>
+</body>
+</html>

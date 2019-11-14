@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body,html{
+			width:100%;
+			height:100%;
+			background-color:#eef;
+			overflow:hidden;
+		}
+		div.d1{
+			width:150px;
+			height:150px;
+			background:radial-gradient(circle at 50% 40%,#fcfcfc,#efeff1 66%,#9b5050 100%);
+			margin:220px auto;
+			border-radius:50%;
+			overflow:hidden;
+		}
+		.d2{
+			width:40%;
+			height:40%;
+			margin:30%;
+			border-radius:50%;
+			background:radial-gradient(circle at 50% 50%,#208ab4 0%,#6fbfff 30%,#4381b2 100%);
+			position:relative;
+			animation:liu 5s ease-out infinite;
+		}
+		.d2::before{
+			content:"";
+			width:37.5%;
+			height:37.5%;
+			position:absolute;
+			border-radius:50%;
+			top:31.25%;
+			left:31.25%;
+			background:black;
+		}
+		.d2::after{
+			content:"";
+			border-radius:50%;
+			width:31.25%;
+			height:31.25%;
+			position:absolute;
+			top:18.75%;
+			left:18.75%;
+			background:rgba(255,255,255,0.2);
+		}
+		@keyframes liu{
+			0%{
+				transform: none;
+			}
+			20%{
+				transform:translateX(-2em) translateY(1.875em) skewX(15deg) skewY(-10deg) scale(0.95);
+			}
+			25%,44%{
+				transform:none;
+			}
+			50%,60%{
+				transform:translateX(2em) translateY(-2em) skewX(5deg) skewY(2deg) scaleX(0.95);
+			}
+			66%,100%{
+				transform:none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="d1"><div class="d2"></div></div>
+</body>
+</html>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+	$(function(){
+		setTimeout(function(){
+			window.location.href = "index_1.html";
+		},10000);
+	});
+</script>
